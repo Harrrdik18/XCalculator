@@ -10,11 +10,15 @@ function App() {
   };
 
   const calculateResult = () => {
-    try {
-      const result = eval(input);
-      setOutput(result);
-    } catch (error) {
+    if (input.trim() === '' || /[+\-*/.]$/.test(input)) {
       setOutput('Error');
+    } else {
+      try {
+        const result = eval(input);
+        setOutput(result);
+      } catch (error) {
+        setOutput('Error');
+      }
     }
   };
 
@@ -22,7 +26,6 @@ function App() {
     setInput('');
     setOutput('');
   };
-
 
   return (
     <div className="calculator">
